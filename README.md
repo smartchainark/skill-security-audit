@@ -18,13 +18,19 @@ AI Agent skill marketplaces (ClawHub, etc.) are the new npm — and they have th
 
 ## Quick Start
 
-### One-Line Install
+### Install via Skills CLI (Recommended)
+
+```bash
+npx skills add smartchainark/skill-security-audit
+```
+
+### Or Clone Manually
 
 ```bash
 git clone https://github.com/smartchainark/skill-security-audit.git ~/.claude/skills/skill-security-audit
 ```
 
-That's it. The skill is now available in Claude Code.
+Either way, the skill is immediately available in Claude Code.
 
 ### Run Manually
 

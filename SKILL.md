@@ -1,3 +1,8 @@
+---
+name: skill-security-audit
+description: Detect malicious patterns in AI Agent skills — 13 detectors for backdoors, credential theft, data exfiltration, and supply-chain attacks. Based on SlowMist's ClawHub threat intelligence (472+ malicious skills). Pure Python, zero dependencies.
+---
+
 # Skill Security Audit
 
 Detect malicious patterns in installed Claude and OpenClaw skills. Based on SlowMist's analysis of 472+ malicious skills on ClawHub platform.
