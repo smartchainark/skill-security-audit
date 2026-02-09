@@ -22,7 +22,7 @@ ClawHub 是 OpenClaw 的官方插件中心——简单说就是 AI Agent 生态�
 
 下面这张截图就是 ClawHub 的真实情况——搜索 "twitter" 相关 Skill，下载量 257 的热门 Skill 已被标记为 SCAM：
 
-![ClawHub 平台上被标记为 SCAM 的热门 Skill](images/clawhub-scam.jpeg)
+![ClawHub 平台上被标记为 SCAM 的热门 Skill](https://pic4.zhimg.com/v2-30744be0c4aa2327b654dbc50315c43c)
 
 **这不是假设性的威胁，这正在发生。**
 
@@ -32,19 +32,19 @@ ClawHub 是 OpenClaw 的官方插件中心——简单说就是 AI Agent 生态�
 
 随后，慢雾创始人余弦（@evilcos）亲自验证并转发：在 ClawHub 里一些热门下载的 Skills 存在后门，会引导 OpenClaw 下载安装恶意软件。他提醒：**「玩 AI 这些工具要用独立环境……文本不再是文本，而是指令。」**
 
-![余弦推文验证 ClawHub 恶意 Skills](images/cos-tweet.png)
+![余弦推文验证 ClawHub 恶意 Skills](https://pic4.zhimg.com/v2-264c0d2e38adba0df73b112612f9f1f4)
 
 2 月 9 日，慢雾安全团队正式发布完整的威胁情报分析报告《[威胁情报｜ClawHub 恶意 skills 投毒分析](https://mp.weixin.qq.com/s/mH2kApjTgBw6iskh-HBFNQ)》（作者：Yao & sissice），全面披露了攻击手法、恶意样本和幕后组织。
 
-![慢雾安全团队威胁情报报告](images/slowmist-report.png)
+![慢雾安全团队威胁情报报告](https://pic4.zhimg.com/v2-4be5712c1e8a0b0b067624bf32dccb0f)
 
 ## 跟我有什么关系
 
 我是一个重度使用 Claude Code 和 OpenClaw 的开发者，平时用 Claude Code 写代码、用 OpenClaw 跑自动化，下面就是我的真实工作环境：
 
-![用 Claude Code 调试 OpenClaw Gateway](images/claude-code-debug.png)
+![用 Claude Code 调试 OpenClaw Gateway](https://pic4.zhimg.com/v2-5c09680c61210ab6b88181ec86fd5d4a)
 
-![OpenClaw Doctor 检查系统状态](images/openclaw-doctor.png)
+![OpenClaw Doctor 检查系统状态](https://pic4.zhimg.com/v2-4b6182425d384c388445dfa575e54642)
 
 看到报告的那一刻，我立刻想到——本地 `~/.claude/skills/` 目录下躺着近 40 个 Skill，`~/.openclaw/workspace/skills/` 下面还有一堆。哪些是干净的？哪些可能正在偷偷读我的 SSH 密钥？不知道。
 
