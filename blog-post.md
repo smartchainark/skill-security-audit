@@ -1,22 +1,48 @@
-# 我给 Claude Code 做了个「安全体检」技能 —— 从 472 个恶意 Skill 投毒事件说起
+# OpenClaw遭遇大规模投毒，我开源了安全工具
 
 > 当 AI Agent 的供应链被攻破，你安装的每一个「技能」都可能是特洛伊木马。
 
-## 一切从一份安全报告开始
+## 发生了什么
 
-2026 年 1 月底，慢雾安全团队（SlowMist）发布了一份让整个 AI Agent 开发者社区炸锅的报告：ClawHub 平台上被发现了 **472 个以上的恶意 Skills**。
-
-ClawHub 是什么？简单说，就是 AI Agent 生态里的「npm / pip」——一个大家上传和下载 Agent 技能的市场。你想让你的 Claude 或 OpenClaw Agent 会搜索、会画图、会发推特？去 ClawHub 装个 Skill 就行。
+ClawHub 是 OpenClaw 的官方插件中心——简单说就是 AI Agent 生态里的「npm / pip」，大家在这里上传和下载 Agent 技能。你想让你的 Claude 或 OpenClaw Agent 会搜索、会画图、会发推特？去 ClawHub 装个 Skill 就行。
 
 问题是，这个「就行」的背后，几乎没有安全审查。
 
-我作为一个重度使用 Claude Code 和 OpenClaw 的开发者，当时一看报告——本地 `~/.claude/skills/` 目录下躺着近 40 个 Skill，`~/.openclaw/workspace/skills/` 下面还有一堆。哪些是干净的？哪些可能正在偷偷读我的 SSH 密钥？不知道。
+据慢雾安全团队（@SlowMist_Team）监测，ClawHub 已被大量恶意 Skills 渗透。目前已有 **472+ 个恶意 Skills** 被识别，通常伪装成加密资产工具、安全检查工具或自动化助手。影响 Linux / Windows / macOS 全平台。
+
+下面这张截图就是 ClawHub 的真实情况——搜索 "twitter" 相关 Skill，下载量 257 的热门 Skill 已被标记为 SCAM：
+
+![ClawHub 平台上被标记为 SCAM 的热门 Skill](images/clawhub-scam.jpeg)
+
+**这不是假设性的威胁，这正在发生。**
+
+## 事件时间线
+
+2026 年 2 月 5 日，安全研究员 Daniel Lockyer 在 X 上首先披露："malware found in the top downloaded skill on clawhub"——ClawHub 上下载量最高的 Skill 里发现了恶意软件。
+
+随后，慢雾创始人余弦（@evilcos）亲自验证并转发：在 ClawHub 里一些热门下载的 Skills 存在后门，会引导 OpenClaw 下载安装恶意软件。他提醒：**「玩 AI 这些工具要用独立环境……文本不再是文本，而是指令。」**
+
+![余弦推文验证 ClawHub 恶意 Skills](images/cos-tweet.png)
+
+2 月 9 日，慢雾安全团队正式发布完整的威胁情报分析报告《[威胁情报｜ClawHub 恶意 skills 投毒分析](https://mp.weixin.qq.com/s/mH2kApjTgBw6iskh-HBFNQ)》（作者：Yao & sissice），全面披露了攻击手法、恶意样本和幕后组织。
+
+![慢雾安全团队威胁情报报告](images/slowmist-report.png)
+
+## 跟我有什么关系
+
+我是一个重度使用 Claude Code 和 OpenClaw 的开发者，平时用 Claude Code 写代码、用 OpenClaw 跑自动化，下面就是我的真实工作环境：
+
+![用 Claude Code 调试 OpenClaw Gateway](images/claude-code-debug.png)
+
+![OpenClaw Doctor 检查系统状态](images/openclaw-doctor.png)
+
+看到报告的那一刻，我立刻想到——本地 `~/.claude/skills/` 目录下躺着近 40 个 Skill，`~/.openclaw/workspace/skills/` 下面还有一堆。哪些是干净的？哪些可能正在偷偷读我的 SSH 密钥？不知道。
 
 这种不确定感让人非常不舒服。
 
-## 慢雾报告揭露了什么
+## 攻击者到底在干什么
 
-我仔细研读了报告全文。攻击者的手法远比我想象的成熟：
+472 个恶意 Skill 不是简单的挂马。我仔细研读了慢雾的完整报告，攻击手法相当专业：
 
 ### 手法一：两段式载荷投递
 
