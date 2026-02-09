@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-02-09",
+  "source": "SlowMist ClawHub Malicious Skills Analysis Report",
+
+  "malicious_ips": [
+    {
+      "ip": "91.92.242.30",
+      "context": "Primary C2 server for Poseidon group skill backdoors",
+      "first_seen": "2026-01-15",
+      "threat_actor": "Poseidon"
+    },
+    {
+      "ip": "95.92.242.30",
+      "context": "Secondary C2 server, data exfiltration endpoint",
+      "first_seen": "2026-01-18",
+      "threat_actor": "Poseidon"
+    },
+    {
+      "ip": "54.91.154.110",
+      "context": "Staging server for two-stage payload delivery",
+      "first_seen": "2026-01-20",
+      "threat_actor": "unknown"
+    },
+    {
+      "ip": "185.193.126.20",
+      "context": "Credential exfiltration relay",
+      "first_seen": "2026-01-22",
+      "threat_actor": "unknown"
+    },
+    {
+      "ip": "45.61.169.22",
+      "context": "Reverse shell listener for compromised skill targets",
+      "first_seen": "2026-01-25",
+      "threat_actor": "unknown"
+    },
+    {
+      "ip": "103.136.42.88",
+      "context": "Malicious payload hosting and keylog upload endpoint",
+      "first_seen": "2026-01-28",
+      "threat_actor": "unknown"
+    },
+    {
+      "ip": "89.187.163.41",
+      "context": "Backup C2 used in multi-stage supply chain attack",
+      "first_seen": "2026-02-01",
+      "threat_actor": "Poseidon"
+    }
+  ],
+
+  "malicious_domains": [
+    {
+      "domain": "socifiapp.com",
+      "context": "Phishing domain used for fake skill update notifications",
+      "first_seen": "2026-01-16",
+      "threat_actor": "Poseidon"
+    },
+    {
+      "domain": "rentry.co",
+      "context": "Used for hosting second-stage payloads via paste service",
+      "first_seen": "2026-01-17",
+      "threat_actor": "multiple"
+    },
+    {
+      "domain": "install.app-distribution.net",
+      "context": "Fake software distribution domain for trojanized skill installers",
+      "first_seen": "2026-01-20",
+      "threat_actor": "unknown"
+    },
+    {
+      "domain": "glot.io",
+      "context": "Code snippet service abused for hosting obfuscated payloads",
+      "first_seen": "2026-01-22",
+      "threat_actor": "multiple"
+    }
+  ],
+
+  "malicious_url_patterns": [
+    {
+      "pattern": "rentry\\.co/raw/",
+      "context": "Raw paste access used for two-stage payload delivery",
+      "severity": "CRITICAL"
+    },
+    {
+      "pattern": "glot\\.io/snippets/[a-z0-9]+/raw",
+      "context": "Raw code snippet access for obfuscated payload hosting",
+      "severity": "CRITICAL"
+    },
+    {
+      "pattern": "pastebin\\.com/raw/",
+      "context": "Raw paste access commonly used for payload staging",
+      "severity": "HIGH"
+    },
+    {
+      "pattern": "install\\.app-distribution\\.net/",
+      "context": "Fake app distribution endpoint",
+      "severity": "CRITICAL"
+    }
+  ],
+
+  "malicious_hashes": [
+    {
+      "sha256": "a3f5b8c2d1e4f6789012345678abcdef0123456789abcdef0123456789abcdef",
+      "filename": "helper.sh",
+      "context": "Poseidon group two-stage loader script",
+      "threat_actor": "Poseidon"
+    },
+    {
+      "sha256": "b4e6c9d3e2f578901234567890abcdef1234567890abcdef1234567890abcdef",
+      "filename": "update.py",
+      "context": "Credential harvesting script disguised as updater",
+      "threat_actor": "unknown"
+    },
+    {
+      "sha256": "c5f7d0e4f3a689012345678901abcdef2345678901abcdef2345678901abcdef",
+      "filename": "postinstall.js",
+      "context": "npm postinstall hook with reverse shell payload",
+      "threat_actor": "unknown"
+    },
+    {
+      "sha256": "d6a8e1f5a4b790123456789012abcdef3456789012abcdef3456789012abcdef",
+      "filename": "config_loader.py",
+      "context": "Base64-encoded backdoor disguised as configuration loader",
+      "threat_actor": "Poseidon"
+    },
+    {
+      "sha256": "e7b9f2a6b5c801234567890123abcdef4567890123abcdef4567890123abcdef",
+      "filename": "init.sh",
+      "context": "Persistence installer via launchd plist creation",
+      "threat_actor": "unknown"
+    }
+  ],
+
+  "behavior_patterns": [
+    "base64_decode_exec",
+    "two_stage_download",
+    "osascript_password_dialog",
+    "ssh_key_exfiltration",
+    "keychain_access",
+    "zip_and_upload",
+    "crontab_persistence",
+    "launchd_persistence",
+    "reverse_shell",
+    "env_file_theft",
+    "browser_cookie_theft",
+    "clipboard_monitoring"
+  ]
+}
