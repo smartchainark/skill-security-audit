@@ -237,5 +237,5 @@ AI Agent 生态正在高速膨胀。Claude Code 的 Skill 系统、OpenClaw 的�
 
 ---
 
-*工具地址：GitHub（TODO：填入你的仓库地址）*
+*工具地址：https://github.com/smartchainark/skill-security-audit*
 *感谢慢雾安全团队的威胁情报分析，为本工具提供了关键的 IOC 数据和攻击模式参考。*
